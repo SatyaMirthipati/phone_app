@@ -14,6 +14,12 @@ class PushNotification {
       android: androidSettings,
     );
 
+    FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+      alert: false,
+      badge: false,
+      sound: false,
+    );
+
     await flutterLocalNotificationsPlugin.initialize(
       settings,
       onDidReceiveNotificationResponse: (NotificationResponse response) {
@@ -38,8 +44,11 @@ class PushNotification {
       priority: Priority.high,
       playSound: true,
       actions: <AndroidNotificationAction>[
-        AndroidNotificationAction('lift', 'Lift Call',
-            showsUserInterface: true),
+        AndroidNotificationAction(
+          'lift',
+          'Lift Call',
+          showsUserInterface: true,
+        ),
       ],
     );
 
